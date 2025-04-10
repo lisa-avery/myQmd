@@ -1,0 +1,66 @@
+---
+title: ""
+author: 
+  institute: "Biostatistics@UHN" 
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+format:
+  html:
+    toc: TRUE
+  docx:
+    toc: TRUE
+    fig-height: 4
+    fig-width: 6.5
+    reference-doc: 'wordTemplate.docx'
+  pdf:
+    toc: TRUE
+    fig-height: 4
+    fig-width: 6.5
+format-links: false
+bibliography: bibfile.bib  
+editor: source
+execute: 
+  echo: false
+  warning: false
+  message: false
+knitr:
+  opts_chunk: 
+    comment: ""
+    dpi: 300     
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(janitor)
+library(reportRmd)
+library(importExcel)
+theme_pmh <- function(base_size=10){
+  theme_bw(base_size=base_size)  %+replace% 
+    theme(legend.position = 'bottom')
+}
+theme_set(theme_pmh(base_size=10))
+options(list(ggplot2.discrete.fill = function() reportRmd:::scale_colour_reportRx(),
+             ggplot2.discrete.colour = function() reportRmd:::scale_colour_reportRx()))
+R_version <- paste(sessionInfo()[1]$R.version$major,sessionInfo()[1]$R.version$minor,sep=".")
+set.seed(2025)
+source("functions.R")
+
+```
+
+
+# Statistical Analysis
+
+Statistical analyses were conducted using the R statistical programming language version `r R_version` [@R-base].
+
+
+# Results
+
+
+# References
+<!-- This can be moved anywhere in the document
+
+To add citations use [@citekey], where citekey is the key in the bibfile.bib file
+See the R-base example. AI helpers are great for converting references to bibtex format
+-->
+::: {#refs}
+:::
+

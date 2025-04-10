@@ -1,0 +1,204 @@
+---
+title: "Checklist"
+format: html
+editor: visual
+---
+
+## Basic Statistical Checklist
+
+```{=html}
+<!-- Outlier Checks: Anything unsual? 
+-->
+```
+
+```{=html}
+<!-- Missing Data: Complete cases analysis? Multiple Imputation? 
+-->
+```
+
+```{=html}
+<!-- Data Distributions & Transformations: Were transformations necessary? 
+-->
+```
+
+```{=html}
+<!-- Data Distributions & Transformations: Were transformations necessary? 
+-->
+```
+
+```{=html}
+<!-- Modelling: Be clear about outcomes, predictors, models and software used 
+-->
+```
+
+```{=html}
+<!-- Modelling: Were appropriate adjustments made for confounders? (age/sex/gender) Any interactions?
+-->
+```
+
+```{=html}
+<!-- Modelling: Were model assumptions checked?
+-->
+```
+
+```{=html}
+<!-- Reporting: Estimates & CI
+    Were appropriate adjustments made for multiple testing?
+-->
+```
+
+```{=html}
+<!-- Figures: Clearly labelled axes, legends, captions 
+-->
+```
+
+```{=html}
+<!-- Other:
+ - Any subgroup analyses to describe"
+ - Any sensitivity analyses to describe?
+-->
+```
+
+## TRIPOD Items for ML/AI Studies
+
+```{=html}
+<!-- Tripod Item7: Methods/Data preparation
+Describe any data pre-processing and quality checking including whether this was similar across relevant sociodemographic groups-->
+```
+
+```{=html}
+<!-- Tripod Item9a: Methods/Predictors
+Describe the choice of initial predictors (eg literature previous models all available predictors) and any pre-selection of predictors before model building-->
+```
+
+```{=html}
+<!-- Tripod Item10: Methods/Sample size
+Explain how the study size was arrived at (separately for development and evaluation) and justify that the study size was sufficient to answer the research question. Include details of any sample size calculation-->
+```
+
+```{=html}
+<!-- Tripod Item11: Methods/Missing data
+Describe how missing data were handled. Provide reasons for omitting any data-->
+```
+
+```{=html}
+<!-- Tripod Item12a: Methods/Analytical methods
+Describe how the data were used (eg for development and evaluation of model performance) in the analysis including whether the data were partitioned considering any sample size requirements-->
+```
+
+```{=html}
+<!-- Tripod Item12b: Methods/Analytical methods
+Depending on the type of model describe how predictors were handled in the analyses (functional form rescaling transformation or any standardisation)-->
+```
+
+```{=html}
+<!-- Tripod Item12c: Methods/Analytical methods
+Specify the type of model rationale all model building steps including any hyperparameter tuning and method for internal validation-->
+```
+
+```{=html}
+<!-- Tripod Item12d: Methods/Analytical methods
+Describe if and how any heterogeneity in estimates of model parameter values and model performance was handled and quantified across clusters (eg hospitals countries). See TRIPOD-Cluster for additional considerations-->
+```
+
+```{=html}
+<!-- Tripod Item12e: Methods/Analytical methods
+Specify all measures and plots used (and their rationale) to evaluate model performance (eg discrimination calibration clinical utility) and if relevant to compare multiple models-->
+```
+
+```{=html}
+<!-- Tripod Item12f: Methods/Analytical methods
+Describe any model updating (eg recalibration) arising from the model evaluation either overall or for particular sociodemographic groups or settings-->
+```
+
+```{=html}
+<!-- Tripod Item12g: Methods/Analytical methods
+For model evaluation describe how the model predictions were calculated (eg formula code object application programming interface)-->
+```
+
+```{=html}
+<!-- Tripod Item13: Methods/Class imbalance
+If class imbalance methods were used state why and how this was done (oversampling/SMOTE?) and any subsequent methods to recalibrate the model or the model predictions-->
+```
+
+```{=html}
+<!-- Tripod Item14: Methods/Fairness
+Describe any approaches that were used to address model fairness and their rationale-->
+```
+
+```{=html}
+<!-- Tripod Item15: Methods/Model output
+Specify the output of the prediction model (eg probabilities classification). Provide details and rationale for any classification and how the thresholds were identified-->
+```
+
+```{=html}
+<!-- Tripod Item16: Methods/Training versus evaluation
+Identify any differences between the development and evaluation data in healthcare setting eligibility criteria outcome and predictors-->
+```
+
+```{=html}
+<!-- Tripod Item18f: Open science/Code sharing
+Provide details of the availability of the analytical code-->
+```
+
+Analytic code will be provided on reasonable request to the authors.
+
+```{=html}
+<!-- Tripod Item20b: Result/Participants
+Report the characteristics overall and where applicable for each data source or setting including the key dates key predictors (including demographics) treatments received sample size number of outcome events follow-up time and amount of missing data. A table may be helpful. Report any differences across key demographic groups-->
+```
+
+```{=html}
+<!-- Tripod Item20c: Result/Participants
+For model evaluation show a comparison with the development data of the distribution of important predictors (demographics predictors and outcome)-->
+```
+
+```{=html}
+<!-- Tripod Item21: Result/Model development
+Specify the number of participants and outcome events in each analysis (eg for model development hyperparameter tuning model evaluation)-->
+```
+
+```{=html}
+<!-- Tripod Item22: Result/Model specification
+Provide details of the full prediction model (eg formula code object application programming interface) to allow predictions in new individuals and to enable third party evaluation and implementation including any restrictions to access or reuse (eg freely available proprietary)-->
+```
+
+```{=html}
+<!-- Tripod Item23a: Result/Model performance
+Report model performance estimates with confidence intervals including for any key subgroups (eg sociodemographic). Consider plots to aid presentation-->
+```
+
+```{=html}
+<!-- Tripod Item23b: Result/Model performance
+If examined report results of any heterogeneity in model performance across clusters. See TRIPOD-Cluster for additional details-->
+```
+
+```{=html}
+<!-- Tripod Item24: Result/Model updating
+Report the results from any model updating including the updated model and subsequent performance-->
+```
+
+```{=html}
+<!-- Tripod Item25: Discussion/Interpretation
+Give an overall interpretation of the main results including issues of fairness in the context of the objectives and previous studies-->
+```
+
+```{=html}
+<!-- Tripod Item26: Discussion/Limitations
+Discuss any limitations of the study (such as a non-representative sample sample size overfitting missing data) and their effects on any biases statistical uncertainty and generalisability-->
+```
+
+```{=html}
+<!-- Tripod Item27a: Discussion/Usability of the model in the context of current care
+Describe how poor quality or unavailable input data (eg predictor values) should be assessed and handled when implementing the prediction model-->
+```
+
+```{=html}
+<!-- Tripod Item27b: Discussion/Usability of the model in the context of current care
+Specify whether users will be required to interact in the handling of the input data or use of the model and what level of expertise is required of users-->
+```
+
+```{=html}
+<!-- Tripod Item27c: Discussion/Usability of the model in the context of current care
+Discuss any next steps for future research with a specific view to applicability and generalisability of the model-->
+```
