@@ -2,4 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+README.Rmd
+useful_tricks.qmd
+biostats-report.Rprog
 tripod.xlsx
