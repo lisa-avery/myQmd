@@ -18,8 +18,8 @@ Usage:
 2.  Type the following command into the Terminal Window in RStudio
     (beside Console)
 
-If you can not see the Terminal Window, use the following keyboard
-shortcuts: Shift+Alt+M on Windows or Shift+Option+M on Mac
+*If you can not see the Terminal Window, use the following keyboard
+shortcuts:* Shift+Alt+M on Windows or Shift+Option+M on Mac
 
 ``` r
 quarto use template biostatsPMH/biostats-report
@@ -43,3 +43,21 @@ The following files will be created in the new folder:
   for the report. It is sourced in the template.qmd file.
 - *checklist.qmd* This is a checklist for good statistical reporting and
   also includes the TRIPOD guidelines.
+
+The following files are listed in `.quartoignore` so that they are not
+included when you install a template. You can remove them from the
+ignore list if you want to include them in the report:
+
+    .Rproj.user
+    .Rhistory
+    .RData
+    .Ruserdata
+    README.Rmd
+    useful_tricks.qmd
+    repeat_chunks.qmd
+    biostats-report.Rprog
+    tripod.xlsx
+    *.html
+
+There is also a .gitignore file, this is where you can add any files
+that you do not want to be included in the git repository.

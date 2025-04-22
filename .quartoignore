@@ -4,5 +4,7 @@
 .Ruserdata
 README.Rmd
 useful_tricks.qmd
+repeat_chunks.qmd
 biostats-report.Rprog
 tripod.xlsx
+*.html
