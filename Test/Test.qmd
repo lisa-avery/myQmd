@@ -51,20 +51,9 @@ source("functions.R")
 
 Statistical analyses were conducted using the R statistical programming language version `r R_version` [@R-base].
 
-```{r}
- model <- glm(am~cyl+mpg,data=mtcars,family=binomial)
-```
 
 # Results
 
-
-```{r}
-check_model_assumptions(model) |> outTable()
-```
-
-```{r}
-gg_roc(model)
-```
 
 # References
 <!-- This can be moved anywhere in the document
@@ -74,10 +63,4 @@ See the R-base example. AI helpers are great for converting references to bibtex
 -->
 ::: {#refs}
 :::
-
-
-<!-- if you want to include descriptions of the analysis using the checklist into the report you can type into checklist.qmd and change eval=F to eval=T -->
-```{r child=checklist.qmd, eval=F}
-
-```
 

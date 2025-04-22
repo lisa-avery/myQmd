@@ -1,0 +1,187 @@
+```{r}
+#| label: mtcars-var-1
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of mpg'
+mtcars |>
+  mutate(sqrt_mpg = sqrt(mpg),
+         log_mpg = log(mpg + 0.1)) |>
+  pivot_longer(cols = c(mpg, sqrt_mpg, log_mpg),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of mpg with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-2
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of cyl'
+mtcars |>
+  mutate(sqrt_cyl = sqrt(cyl),
+         log_cyl = log(cyl + 0.1)) |>
+  pivot_longer(cols = c(cyl, sqrt_cyl, log_cyl),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of cyl with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-3
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of disp'
+mtcars |>
+  mutate(sqrt_disp = sqrt(disp),
+         log_disp = log(disp + 0.1)) |>
+  pivot_longer(cols = c(disp, sqrt_disp, log_disp),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of disp with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-4
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of hp'
+mtcars |>
+  mutate(sqrt_hp = sqrt(hp),
+         log_hp = log(hp + 0.1)) |>
+  pivot_longer(cols = c(hp, sqrt_hp, log_hp),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of hp with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-5
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of drat'
+mtcars |>
+  mutate(sqrt_drat = sqrt(drat),
+         log_drat = log(drat + 0.1)) |>
+  pivot_longer(cols = c(drat, sqrt_drat, log_drat),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of drat with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-6
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of wt'
+mtcars |>
+  mutate(sqrt_wt = sqrt(wt),
+         log_wt = log(wt + 0.1)) |>
+  pivot_longer(cols = c(wt, sqrt_wt, log_wt),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of wt with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-7
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of qsec'
+mtcars |>
+  mutate(sqrt_qsec = sqrt(qsec),
+         log_qsec = log(qsec + 0.1)) |>
+  pivot_longer(cols = c(qsec, sqrt_qsec, log_qsec),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of qsec with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-8
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of vs'
+mtcars |>
+  mutate(sqrt_vs = sqrt(vs),
+         log_vs = log(vs + 0.1)) |>
+  pivot_longer(cols = c(vs, sqrt_vs, log_vs),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of vs with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-9
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of am'
+mtcars |>
+  mutate(sqrt_am = sqrt(am),
+         log_am = log(am + 0.1)) |>
+  pivot_longer(cols = c(am, sqrt_am, log_am),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of am with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-10
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of gear'
+mtcars |>
+  mutate(sqrt_gear = sqrt(gear),
+         log_gear = log(gear + 0.1)) |>
+  pivot_longer(cols = c(gear, sqrt_gear, log_gear),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of gear with different transformations')
+```
+
+```{r}
+#| label: mtcars-var-11
+#| fig-height: 5
+#| fig-width: 6
+#| fig-cap: 'Distribution of carb'
+mtcars |>
+  mutate(sqrt_carb = sqrt(carb),
+         log_carb = log(carb + 0.1)) |>
+  pivot_longer(cols = c(carb, sqrt_carb, log_carb),
+               names_to = 'Transform', values_to = 'Value') |>
+  ggplot(aes(x = Value)) +
+  geom_histogram(bins = 15, fill = 'steelblue', color = 'black') +
+  facet_wrap(~ Transform, scales = 'free') +
+  theme_minimal() +
+  labs(title = 'Distribution of carb with different transformations')
+```
+
