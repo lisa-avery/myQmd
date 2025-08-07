@@ -8,3 +8,6 @@ repeat_chunks.qmd
 biostats-report.Rprog
 tripod.xlsx
 *.html
+Test/
+checklist_files/
+BS817SOP_SAP.doc

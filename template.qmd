@@ -5,6 +5,8 @@ author:
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 format:
   html:
+    fig-height: 4
+    fig-width: 6.5
     toc: TRUE
   docx:
     toc: TRUE
