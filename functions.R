@@ -24,86 +24,6 @@ rnd <- function(x, digits = 2) {
   return(out)
 }
 
-#' Fast Area Under the ROC Curve (AUC) Calculation
-#'
-#' @description
-#' Calculates the Area Under the ROC Curve (AUC) efficiently for binary classification.
-#' Can accept either predictions and true classes or a glm model object.
-#'
-#' @param probs A vector of probabilities/scores or a glm model object
-#' @param class A vector denoting class membership (must be binary: 0 or 1)
-#'
-#' @return Numeric value representing the AUC (between 0 and 1)
-#'
-#' @examples
-#' # With probability vector and class vector
-#' probs <- runif(100)
-#' class <- sample(0:1, 100, replace = TRUE)
-#' fastAUC(probs, class)
-#'
-#' # With a glm model
-#' # model <- glm(y ~ x, family = binomial(), data = mydata)
-#' # fastAUC(model)
-#'
-#' @export
-fastAUC <- function(probs, class) {
-  if (inherits(probs, "glm")) {
-    class <- probs$y
-    probs <- predict(probs, type = 'response')
-  }
-  x <- probs
-  y <- class
-  x1 = x[y == 1]; n1 = length(x1);
-  x2 = x[y == 0]; n2 = length(x2);
-  r = rank(c(x1, x2))
-  auc = (sum(r[1:n1]) - n1 * (n1 + 1) / 2) / n1 / n2
-  return(auc)
-}
-
-#' Extract ROC Curve Data from Model or Predictions
-#'
-#' @description
-#' Extracts data needed to plot a ROC curve from either a glm model object or
-#' predictions with observed classes. Also calculates AUC and Youden's index
-#' for determining optimal cutoff points.
-#'
-#' @param fitted_obj Either a glm model object or a data frame with predictions and observations
-#' @param digits Number of digits for rounding the AUC value (default: 2)
-#'
-#' @return A list containing:
-#'   \item{data}{Data frame with columns: x (FPR), y (TPR), Youden (TPR-FPR), and cutoff}
-#'   \item{auc}{AUC value formatted according to digit specification}
-#'
-#' @examples
-#' # With a glm model
-#' # model <- glm(y ~ x, family = binomial(), data = mydata)
-#' # roc_data <- get_roc_data(model)
-#'
-#' # With predictions and observations
-#' # preds_obs <- data.frame(predictions = runif(100), observed = sample(0:1, 100, replace = TRUE))
-#' # roc_data <- get_roc_data(preds_obs)
-#'
-#' @export
-get_roc_data <- function(fitted_obj, digits = 2) {
-  if (inherits(fitted_obj, 'glm')) {
-    class_p <- predict(fitted_obj, type = 'response')
-    obs = fitted_obj$y
-    roc_obj <- fastROC(class_p, obs)
-    auc <- fastAUC(class_p, obs)
-    #  if (missing(title)) title = as.character(fitted_obj$call)[2]
-  } else {
-    roc_obj <- fastROC(fitted_obj[, 1], fitted_obj[, 2])
-    auc <- fastAUC(fitted_obj[, 1], fitted_obj[, 2])
-    # if (missing(title)) title = NULL
-  }
-  auc <- niceNum(auc, digits)
-  # TODO: Add different techniques for calculating cut points - see paper
-  df = data.frame(x = roc_obj$fpr,
-                  y = roc_obj$tpr,
-                  Youden = roc_obj$tpr - roc_obj$fpr,
-                  cutoff = roc_obj$threshold)
-  return(list(data = df, auc = auc))
-}
 
 #' Numbers nicely formatted to string
 #'
@@ -200,6 +120,88 @@ htest_dataframe <- function(htest_object) {
 
 
 # Model Evaluation Functions ------------
+
+#' Extract ROC Curve Data from Model or Predictions
+#'
+#' @description
+#' Extracts data needed to plot a ROC curve from either a glm model object or
+#' predictions with observed classes. Also calculates AUC and Youden's index
+#' for determining optimal cutoff points.
+#'
+#' @param fitted_obj Either a glm model object or a data frame with predictions and observations
+#' @param digits Number of digits for rounding the AUC value (default: 2)
+#'
+#' @return A list containing:
+#'   \item{data}{Data frame with columns: x (FPR), y (TPR), Youden (TPR-FPR), and cutoff}
+#'   \item{auc}{AUC value formatted according to digit specification}
+#'
+#' @examples
+#' # With a glm model
+#' # model <- glm(y ~ x, family = binomial(), data = mydata)
+#' # roc_data <- get_roc_data(model)
+#'
+#' # With predictions and observations
+#' # preds_obs <- data.frame(predictions = runif(100), observed = sample(0:1, 100, replace = TRUE))
+#' # roc_data <- get_roc_data(preds_obs)
+#'
+#' @export
+get_roc_data <- function(fitted_obj, digits = 2) {
+  if (inherits(fitted_obj, 'glm')) {
+    class_p <- predict(fitted_obj, type = 'response')
+    obs = fitted_obj$y
+    roc_obj <- fastROC(class_p, obs)
+    auc <- fastAUC(class_p, obs)
+    #  if (missing(title)) title = as.character(fitted_obj$call)[2]
+  } else {
+    roc_obj <- fastROC(fitted_obj[, 1], fitted_obj[, 2])
+    auc <- fastAUC(fitted_obj[, 1], fitted_obj[, 2])
+    # if (missing(title)) title = NULL
+  }
+  auc <- niceNum(auc, digits)
+  # TODO: Add different techniques for calculating cut points - see paper
+  df = data.frame(x = roc_obj$fpr,
+                  y = roc_obj$tpr,
+                  Youden = roc_obj$tpr - roc_obj$fpr,
+                  cutoff = roc_obj$threshold)
+  return(list(data = df, auc = auc))
+}
+#' Fast Area Under the ROC Curve (AUC) Calculation
+#'
+#' @description
+#' Calculates the Area Under the ROC Curve (AUC) efficiently for binary classification.
+#' Can accept either predictions and true classes or a glm model object.
+#'
+#' @param probs A vector of probabilities/scores or a glm model object
+#' @param class A vector denoting class membership (must be binary: 0 or 1)
+#'
+#' @return Numeric value representing the AUC (between 0 and 1)
+#'
+#' @examples
+#' # With probability vector and class vector
+#' probs <- runif(100)
+#' class <- sample(0:1, 100, replace = TRUE)
+#' fastAUC(probs, class)
+#'
+#' # With a glm model
+#' # model <- glm(y ~ x, family = binomial(), data = mydata)
+#' # fastAUC(model)
+#'
+#' @export
+fastAUC <- function(probs, class) {
+  if (inherits(probs, "glm")) {
+    class <- probs$y
+    probs <- predict(probs, type = 'response')
+  }
+  x <- probs
+  y <- class
+  x1 = x[y == 1]; n1 = length(x1);
+  x2 = x[y == 0]; n2 = length(x2);
+  r = rank(c(x1, x2))
+  auc = (sum(r[1:n1]) - n1 * (n1 + 1) / 2) / n1 / n2
+  return(auc)
+}
+
+
 #' Compute the optimism of the observed AUC through bootstrapping
 #'
 #' @description
@@ -296,20 +298,99 @@ efron_auc <- function(model, bs = 1000) {
 #' # assumption_tests <- check_model_assumptions(model, nsim = 500)
 #'
 #' @export
-check_model_assumptions <- function(model, nsim = 1000) {
-  # Check if DHARMa is installed and load it
+check_model_assumptions <- function(model, nsim = 1000, plot=FALSE) {
+  
   if (!requireNamespace("DHARMa", quietly = TRUE)) {
     stop("The DHARMa package is required. Please install it with install.packages('DHARMa')")
   }
-  # Create DHARMa residuals
-  sim_residuals <- DHARMa::simulateResiduals(model, n = nsim)
-  tests_output <- list()
-  tests_output$uniformity <- DHARMa::testUniformity(sim_residuals, plot = F)
-  tests_output$dispersion <- DHARMa::testDispersion(sim_residuals, plot = F)
-  tests_output$outliers <- DHARMa::testOutliers(sim_residuals, plot = F)
-  out <- bind_rows(lapply(tests_output, function(ht) htest_dataframe(ht)), .id = "Test")
+  
+  # Check if input is a mira object from mice
+  if (inherits(model, "mira")) {
+    # Extract the first model to get structure information
+    first_model <- model$analyses[[1]]
+    
+    # Create a pooled model for residual simulation
+    pooled_model <- mice::pool(model)
+    
+    # We'll need to handle this differently as DHARMa doesn't directly support mira objects
+    # We'll create residual simulations for each imputed model and combine them
+    
+    all_results <- list()
+    
+    # Loop through each imputed model
+    for (i in seq_along(model$analyses)) {
+      current_model <- model$analyses[[i]]
+      
+      # Create DHARMa residuals for this model
+      sim_residuals <- DHARMa::simulateResiduals(current_model, n = nsim)
+      
+      # Run tests
+      tests_output <- list()
+      tests_output$uniformity <- DHARMa::testUniformity(sim_residuals, plot = FALSE)
+      tests_output$dispersion <- DHARMa::testDispersion(sim_residuals, plot = FALSE)
+      tests_output$outliers <- DHARMa::testOutliers(sim_residuals, plot = FALSE)
+      
+      # Convert to data frame
+      results_df <- dplyr::bind_rows(lapply(tests_output, function(ht) htest_dataframe(ht)),
+                                     .id = "Test")
+      results_df$imputation <- i
+      
+      all_results[[i]] <- results_df
+    }
+    
+    # Combine all results
+    combined_results <- dplyr::bind_rows(all_results)
+    
+    # Calculate mean values across imputations
+    out <- combined_results |>
+      dplyr::group_by(Test) |>
+      dplyr::summarise(
+        mean_statistic = mean(statistic, na.rm = TRUE),
+        mean_p_value = mean(p.value, na.rm = TRUE),
+        .groups = "drop"
+      ) |>
+      dplyr::mutate(
+        significant = mean_p_value < 0.05,
+        interpretation = dplyr::case_when(
+          Test == "uniformity" & significant ~ "Non-uniform residuals (model misspecification)",
+          Test == "uniformity" & !significant ~ "Uniform residuals (good)",
+          Test == "dispersion" & significant ~ "Over/under-dispersion detected",
+          Test == "dispersion" & !significant ~ "No dispersion issues",
+          Test == "outliers" & significant ~ "Outliers detected",
+          Test == "outliers" & !significant ~ "No outlier issues",
+          TRUE ~ "Unknown test"
+        )
+      )
+  } else {
+    # Original function for single models
+    
+    # Create DHARMa residuals
+    sim_residuals <- DHARMa::simulateResiduals(model, n = nsim)
+    tests_output <- list()
+    tests_output$uniformity <- DHARMa::testUniformity(sim_residuals, plot = FALSE)
+    tests_output$dispersion <- DHARMa::testDispersion(sim_residuals, plot = FALSE)
+    tests_output$outliers <- DHARMa::testOutliers(sim_residuals, plot = FALSE)
+    
+    out <- dplyr::bind_rows(lapply(tests_output, function(ht) htest_dataframe(ht)), .id = "Test") |>
+      transmute(Test,statistic,p.value,
+                significant = p.value< 0.05,
+                interpretation = dplyr::case_when(
+                  Test == "uniformity" & significant ~ "Non-uniform residuals (model misspecification)",
+                  Test == "uniformity" & !significant ~ "Uniform residuals (good)",
+                  Test == "dispersion" & significant ~ "Over/under-dispersion detected",
+                  Test == "dispersion" & !significant ~ "No dispersion issues",
+                  Test == "outliers" & significant ~ "Outliers detected",
+                  Test == "outliers" & !significant ~ "No outlier issues",
+                  TRUE ~ "Unknown test"
+                )
+      )
+    
+  }
+  if (plot) plot(sim_residuals) # this will plot the final imputation for mice models
   return(out)
 }
+
+
 
 
 #' Receiving Operating Curve Plot
