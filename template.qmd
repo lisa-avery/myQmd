@@ -30,7 +30,8 @@ knitr:
     dpi: 300     
 ---
 
-```{r setup, include=FALSE}
+```{r setup}
+#| include: false
 library(tidyverse)
 library(janitor)
 library(reportRmd)
@@ -48,7 +49,9 @@ source("functions.R")
 
 ```
 
-```{r, eval=FALSE}
+```{r}
+#| eval: false
+#| include: false
 Rmisc::createBibFile("bibout.bib")
 ```
 
