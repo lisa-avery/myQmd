@@ -1,0 +1,59 @@
+---
+title: "PROMS"
+format: html
+bibliography: bibfile.bib; prom_refs.bib  
+---
+
+```{r}
+## score & label the proms ----
+source( "R/proms.R") 
+names_b4_scoring <- names(df)
+df <- df |>
+  score_eq5d() |>
+  score_esas() |>
+  score_facitpal() |>
+  score_gad7() |>
+  score_godin() |>
+  score_phq9() |>
+  score_sdi() |>
+  score_sf36_pf() |>
+  score_whodas()
+names_after_scoring <- names(df)
+
+prom_scores <- grep(
+  "n_missing",
+  setdiff(names_after_scoring, names_b4_scoring),
+  invert = T,
+  value = T
+)
+
+
+# Note:
+#var_info is a data frame with subcategory and variable columns used to organise the variables into sections
+
+## gather information on how missingness was handled ----
+missing_prom_handling <- bind_rows(lapply(prom_scores, function(x) {
+  data.frame(variable = x, missing_data = attr(df[[x]], "miss_handling"))
+})) |>
+  full_join(
+    var_info |>
+      filter(variable %in% prom_scores)
+  ) |>
+  select(subcategory, variable, missing_data) |>
+  group_by(subcategory, missing_data) |>
+  summarise(variables = paste(variable, collapse = ", ")) |>
+  ungroup() |>
+  transmute(PROM = subcategory, variables, missing_items = missing_data)
+```
+
+PROMS were scored according to guidelines [@prom-whodas; @prom-sf36; @prom-sdi; @prom-gad7; @prom-phq9; @prom-eq5d; @prom-facitpal; @prom-esas; @prom-godin]. Missing item scores, when not described in the scoring guidelines were handled as described in @tbl-missing-proms.
+
+## Handling of Missing PROM data
+
+```{r}
+#| label: tbl-missing-proms
+#| tbl-cap: Computation of PROM scores with missing data
+
+missing_prom_handling |> 
+  nestTable(head_col = "PROM", to_col="variables")
+```

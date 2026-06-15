@@ -52,11 +52,19 @@ options(list(ggplot2.discrete.fill = function() reportRmd:::scale_colour_reportR
              ggplot2.discrete.colour = function() reportRmd:::scale_colour_reportRx()))
 R_version <- paste(sessionInfo()[1]$R.version$major,sessionInfo()[1]$R.version$minor,sep=".")
 set.seed(2025)
-source( "utils.R")
-source( "data_cleaning.R")
-source( "glm_functions.R")
-source( "correlations.R")
-source( "score_proms.R")
+source( "R/format_utils.R")
+source( "R/correlations.R")
+source( "R/data_cleaning.R")
+source( "R/data_import.R")
+source( "R/data_screening.R")
+source( "R/deid_functions.R")
+source( "R/durations.R")
+source( "R/marker_selection.R")
+source( "R/model_eval.R")
+source( "R/pet_mri_functions.R")
+
+source( "R/quarto_tools.R")
+source( "R/redcap.R")
 
 ```
 
