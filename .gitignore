@@ -3,3 +3,16 @@
 .RData
 .Ruserdata
 myQmd.Rprog
+*.xlsx
+*.doc
+*.docx
+*.xlsx
+*.xls
+*.html
+*.pdf
+*.tiff
+*.png
+*.jpg
+*.csv
+*.csl
+

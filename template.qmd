@@ -17,6 +17,7 @@ format:
     toc: TRUE
     fig-height: 4
     fig-width: 6.5
+output-dir: .
 format-links: false
 bibliography: bibfile.bib  
 editor: source
@@ -35,17 +36,27 @@ knitr:
 library(tidyverse)
 library(janitor)
 library(reportRmd)
-library(importExcel)
+
 theme_pmh <- function(base_size=10){
   theme_bw(base_size=base_size)  %+replace% 
-    theme(legend.position = 'bottom')
+    theme(
+    legend.position = 'bottom',
+    plot.title = element_text(size = base_size, face = "plain",hjust = 0),
+    legend.key.width = unit(1, "lines"),
+    legend.text = element_text(
+      margin = margin(l = -.5)
+    ))
 }
 theme_set(theme_pmh(base_size=10))
 options(list(ggplot2.discrete.fill = function() reportRmd:::scale_colour_reportRx(),
              ggplot2.discrete.colour = function() reportRmd:::scale_colour_reportRx()))
 R_version <- paste(sessionInfo()[1]$R.version$major,sessionInfo()[1]$R.version$minor,sep=".")
 set.seed(2025)
-source("functions.R")
+source( "utils.R")
+source( "data_cleaning.R")
+source( "glm_functions.R")
+source( "correlations.R")
+source( "score_proms.R")
 
 ```
 

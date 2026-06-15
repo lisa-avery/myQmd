@@ -1,0 +1,116 @@
+# PROM SCORING CITATAIONS ----
+@article{prom-whodas,
+  author  = {Andrews, Gavin and Kemp, Alice and Sunderland, Matthew and Von Korff, Michael and {\"U}st{\"u}n, T. Bedirhan},
+  title   = {Normative Data for the 12 Item {WHO} Disability Assessment Schedule 2.0},
+  journal = {PLoS ONE},
+  volume  = {4},
+  number  = {12},
+  pages   = {e8343},
+  year    = {2009},
+  doi     = {10.1371/journal.pone.0008343},
+  note    = {Validates the simple-sum scoring of the 12-item WHODAS 2.0 used in the analysis. Items scored 0 (none) to 4 (extreme/cannot do); sum score ranges 0--48. The authors show that simple sum scores correlate >0.98 with IRT-based scores. Matches the R implementation (score\_whodas).}
+}
+
+@book{prom-sf36,
+  author    = {Ware, John E. and Snow, Kristin K. and Kosinski, Mark and Gandek, Barbara},
+  title     = {{SF-36} Health Survey: Manual and Interpretation Guide},
+  publisher = {The Health Institute, New England Medical Center},
+  address   = {Boston, MA},
+  year      = {1993},
+  note      = {Authoritative scoring manual. Defines the Physical Functioning scale transformation: items scored 1--3, summed to a raw score (range 10--30), then rescaled as ((raw $-$ 10) / (30 $-$ 10)) $\times$ 100 to produce a 0--100 score. Also specifies the half-rule for missing items (person-mean imputation if at least 50\% of subscale items are answered, otherwise set to missing). Matches the R implementation (score\_sf36\_pf).}
+}
+
+@article{prom-sdi,
+  author  = {Wright, Penny and Smith, Adam B. and Keding, Ada and Velikova, Galina},
+  title   = {The Social Difficulties Inventory ({SDI}): Development of Subscales and Scoring Guidance for Staff},
+  journal = {Psycho-Oncology},
+  volume  = {20},
+  number  = {1},
+  pages   = {36--43},
+  year    = {2011},
+  doi     = {10.1002/pon.1705},
+  note    = {Derives the three-factor subscale structure (Everyday living, Money matters, Self and others) used in the R implementation. Items scored 0 (no difficulty) to 3 (very much); subscale scores computed by summing associated items; SDI-16 = sum of the three subscales. Matches the R implementation (score\_sdi).}
+}
+
+@article{prom-gad7,
+  author  = {Spitzer, Robert L. and Kroenke, Kurt and Williams, Janet B. W. and L{\"o}we, Bernd},
+  title   = {A Brief Measure for Assessing Generalized Anxiety Disorder: The {GAD-7}},
+  journal = {Archives of Internal Medicine},
+  volume  = {166},
+  number  = {10},
+  pages   = {1092--1097},
+  year    = {2006},
+  doi     = {10.1001/archinte.166.10.1092},
+  note    = {Original development and validation. Items scored 0--3; total score 0--21; severity cutoffs of 5 (mild), 10 (moderate), and 15 (severe); clinical threshold of 10 or greater. Matches the R implementation (score\_gad7).}
+}
+
+@article{prom-phq9,
+  author  = {Kroenke, Kurt and Spitzer, Robert L. and Williams, Janet B. W.},
+  title   = {The {PHQ-9}: Validity of a Brief Depression Severity Measure},
+  journal = {Journal of General Internal Medicine},
+  volume  = {16},
+  number  = {9},
+  pages   = {606--613},
+  year    = {2001},
+  doi     = {10.1046/j.1525-1497.2001.016009606.x},
+  note    = {Original validation. Items scored 0--3; total score 0--27; severity cutoffs of 5 (mild), 10 (moderate), 15 (moderately severe), and 20 (severe); clinical threshold of 10 or greater. Matches the R implementation (score\_phq9).}
+}
+
+@article{prom-eq5d,
+  author  = {Herdman, M. and Gudex, C. and Lloyd, A. and Janssen, M. F. and Kind, P. and Parkin, D. and Bonsel, G. and Badia, X.},
+  title   = {Development and Preliminary Testing of the New Five-Level Version of {EQ-5D} ({EQ-5D-5L})},
+  journal = {Quality of Life Research},
+  volume  = {20},
+  number  = {10},
+  pages   = {1727--1736},
+  year    = {2011},
+  doi     = {10.1007/s11136-011-9903-x},
+  note    = {Development paper for the EQ-5D-5L instrument. Describes the 5-level response structure (no problems, slight, moderate, severe, extreme/unable) that the R implementation recodes to levels 1--5 for each of the five dimensions. The current R code does not compute a utility index; if one is added later, a country-specific value set reference (e.g.\ Canadian) would also be required.}
+}
+
+@article{prom-facitpal,
+  author  = {Webster, Kimberly and Cella, David and Yost, Kathleen},
+  title   = {The {F}unctional {A}ssessment of {C}hronic {I}llness {T}herapy ({FACIT}) Measurement System: Properties, Applications, and Interpretation},
+  journal = {Health and Quality of Life Outcomes},
+  volume  = {1},
+  pages   = {79},
+  year    = {2003},
+  doi     = {10.1186/1477-7525-1-79},
+  note    = {Describes the FACIT scoring procedure used in the R implementation: items scored 0 (not at all) to 4 (very much); negatively worded items reverse-scored by subtracting the response from 4; subscale scores prorated using the subscale mean if at least 50\% of items were answered (e.g.\ at least 4 of 7); FACT-G total = PWB + SWB + EWB + FWB; total score = FACT-G + disease-specific subscale (Palliative Care); Trial Outcome Index (TOI) = PWB + FWB + disease-specific subscale. Matches the R implementation (score\_facitpal). The detailed scoring templates specifying which items are reverse-scored within each subscale are available from \url{https://www.facit.org/scoring}.}
+}
+
+@article{prom-esas,
+  author  = {Bruera, Eduardo and Kuehn, Norma and Miller, Melvin J. and Selmser, Pal and Macmillan, Keith},
+  title   = {The {E}dmonton {S}ymptom {A}ssessment {S}ystem ({ESAS}): A Simple Method for the Assessment of Palliative Care Patients},
+  journal = {Journal of Palliative Care},
+  volume  = {7},
+  number  = {2},
+  pages   = {6--9},
+  year    = {1991},
+  doi     = {10.1177/082585979100700202},
+  note    = {Original ESAS paper defining the 9 symptom items (pain, tiredness, nausea, depression, anxiety, drowsiness, appetite, wellbeing, shortness of breath) used in the R implementation. The original paper used 0--100 mm visual analogue scales; the current R implementation extracts 0--10 numerical ratings, which reflects the widely-adopted numerical rating scale version of the instrument. If the 0--10 numerical rating scale requires its own citation, see Watanabe et al.\ 2011 (ESAS-r) below.}
+}
+
+@article{prom-esas-r,
+  author  = {Watanabe, Sharon M. and Nekolaichuk, Cheryl and Beaumont, Crystal and Johnson, Laurel and Myers, Jeff and Strasser, Florian},
+  title   = {A Multicenter Study Comparing Two Numerical Versions of the {E}dmonton {S}ymptom {A}ssessment {S}ystem in Palliative Care Patients},
+  journal = {Journal of Pain and Symptom Management},
+  volume  = {41},
+  number  = {2},
+  pages   = {456--468},
+  year    = {2011},
+  doi     = {10.1016/j.jpainsymman.2010.04.020},
+  note    = {Describes the revised ESAS (ESAS-r), a standardized 0--10 numerical rating scale version of the ESAS with updated symptom wording. This is the more precise reference for the 0--10 item-level scoring used in the R implementation (score\_esas). Optional companion citation to prom-esas.}
+}
+
+@article{prom-godin,
+  author  = {Godin, Gaston},
+  title   = {The {G}odin-{S}hephard Leisure-Time Physical Activity Questionnaire},
+  journal = {Health and Fitness Journal of Canada},
+  volume  = {4},
+  number  = {1},
+  pages   = {18--22},
+  year    = {2011},
+  doi     = {10.14288/hfjc.v4i1.82},
+  note    = {Defines both the Leisure Score Index (LSI = 9 $\times$ strenuous + 5 $\times$ moderate + 3 $\times$ mild, using frequency of bouts of at least 15 min in a typical week) AND the three-category classification used in the R implementation: Active (LSI $\geq$ 24), Moderately Active (14--23), Insufficiently Active/Sedentary ($<$ 14). The original Godin \& Shephard 1985 paper introduced the LSI formula but did not define the three-category classification, so this 2011 paper is the correct reference for the scoring used. Note: the R implementation's frequency-times-duration ``minutes per week'' variables (godin\_strenuous\_min, godin\_moderate\_min, godin\_mild\_min, godin\_mvpa\_min) are a local extension; the standard GSLTPAQ LSI uses frequency only.}
+}
